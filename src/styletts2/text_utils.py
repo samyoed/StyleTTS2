@@ -24,3 +24,4 @@ class TextCleaner:
             except KeyError:
                 print(text)
         return indexes
+

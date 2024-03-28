@@ -61,13 +61,14 @@ def preprocess(wave):
 
 
 def segment_text(text):
-    splitter = RecursiveCharacterTextSplitter(
-        separators=["\n\n", "\n", " ", ""],
-        chunk_size=SINGLE_INFERENCE_MAX_LEN,
-        chunk_overlap=0,
-        length_function=len,
-    )
-    segments = splitter.split_text(text)
+    # splitter = RecursiveCharacterTextSplitter(
+    #     separators=["\n\n", "\n", " ", ""],
+    #     chunk_size=SINGLE_INFERENCE_MAX_LEN,
+    #     chunk_overlap=0,
+    #     length_function=len,
+    # )
+    # segments = splitter.split_text(text)
+    segments = utils.split_and_recombine_text(text)
     return segments
 
 
