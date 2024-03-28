@@ -20,6 +20,7 @@ np.random.seed(0)
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import yaml
+import re
 
 from . import models
 from . import utils
