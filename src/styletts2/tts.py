@@ -74,7 +74,7 @@ def segment_text(text):
 
 
 class StyleTTS2:
-    def __init__(self, model_checkpoint_path=None, config_path=None, phoneme_converter='gruut'):
+    def __init__(self, model_checkpoint_path=None, config_path=None, phoneme_converter='espeak'):
         self.model = None
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.phoneme_converter = PhonemeConverterFactory.load_phoneme_converter(phoneme_converter)
@@ -349,7 +349,7 @@ class StyleTTS2:
         for text_segment in text_segments:
             # Address cut-off sentence issue due to langchain text splitter
             if text_segment[-1] != '.':
-                text_segment += ', '
+                text_segment += '. '
             segment_output, prev_s = self.long_inference_segment(text_segment,
                                                                  prev_s,
                                                                  ref_s,
