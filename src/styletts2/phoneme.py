@@ -1,7 +1,7 @@
 from gruut import sentences
 from collections.abc import Iterable
 import phonemizer
-
+from nltk.tokenize import word_tokenize
 
 espeak_phonemizer = phonemizer.backend.EspeakBackend(language='en-us', preserve_punctuation=True,  with_stress=True)
 
@@ -25,11 +25,11 @@ class GruutPhonemizer(PhonemeConverter):
         return phonemized_text
 
 
-class ESpeakPhonemizer(Phonemizer):
+class ESpeakPhonemizer(PhonemeConverter):
     def phonemize(self, text, lang='en-us'):
         text = text.strip()
         text = text.replace('"', '')
-        ps = global_phonemizer.phonemize([text])
+        ps = espeak_phonemizer.phonemize([text])
         ps = word_tokenize(ps[0])
         ps = ' '.join(ps)
 
